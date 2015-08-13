@@ -1,0 +1,17 @@
+extends layout.jade
+
+block content
+	nav#roomwnav
+		b Rooms
+		#rooms
+	br
+	#namewrapper
+		b Your name: 
+			input#name(type='text', value='Anonymous')
+	#chatwrapper
+		#content
+		.controls
+
+			br
+			input#field()
+			input#send(type='button', value='send')

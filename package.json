@@ -1,0 +1,14 @@
+{
+  "name": "chat",
+  "version": "0.0.1",
+  "description": "Simple chat application",
+  "author": "Olli Rauramo",
+  "dependencies": {
+    "express": "latest",
+    "socket.io": "latest",
+    "express-session": "latest",
+    "express-socket.io-session": "latest",
+    "jade": "latest"
+  },
+  "main": "index.js"
+}

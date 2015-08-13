@@ -1,0 +1,10 @@
+extends layout.jade
+
+block content
+	| Join a chat room with name: 
+	input#name()
+	nav
+		ul
+			each item in rooms
+				li
+					a(href='/room/#{item}') #{item} 

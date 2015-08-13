@@ -1,0 +1,72 @@
+#content {
+	width: 500px;
+	height: 300px;
+	margin: 0 0 20px 0;
+	border: solid 0px #999;
+	overflow-y: scroll;
+}
+
+#chatwrapper {
+	border: solid 1px #999;
+	display: inline-block;
+	clear: both;
+	text-align: center;
+}
+
+#namewrapper {
+	clear: both;
+}
+
+body * {
+	font-family: source sans pro;
+}
+
+input.field {
+	width: 350px;
+}
+
+span.serverMessage {
+	
+}
+
+span.ownMessage {
+	
+}
+
+div.generalRow {
+
+}
+
+div.chatRow {
+	text-align: left;
+}
+
+div.ownChatRow {
+	text-align: right;
+}
+
+div.serverChatRow {
+	text-align: center;
+}
+
+div.bubble {
+	display: inline-block;
+	clear: both;
+	padding: 5px 5px 5px 5px;
+	margin: 5px 5px 5px 5px;
+	border-radius: 10px;
+	text-align: left;
+}
+
+div.ownChatBubble {
+	background-color: #599dc1;
+	opacity: 0.75;
+}
+
+div.chatBubble {
+	background-color: rgba(200, 200, 200, 0.5);
+}
+
+div.serverBubble {
+	background-color: rgba(200, 200, 200, 0.3);
+}
