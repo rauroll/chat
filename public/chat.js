@@ -6,23 +6,28 @@ window.onload = function () {
 	var sendButton = document.getElementById("send");
 	var content = document.getElementById("content");
 	var name = document.getElementById("name");
+	var testButton = document.getElementById("testbutton");
 
 	socket.on('connect', function() {
 		var nameToUse = (sessionStorage.name) ? sessionStorage.name : name.value;
 		name.value = nameToUse;
 
-		socket.emit('getUsername', name.value);
+		socket.emit('join', name.value, "room1");
 		//socket.emit('adduser', name.value, "room1");
 	});
-
-	socket.on('initUsername', function(username) {
+	socket.on('updateUsername', function(username) {
 		name.value = username;
-		socket.emit('adduser', name.value, "room1");
+	});
+
+	socket.on('initUsername', function(username, userWasNew) {
+		name.value = username;
+		if (userWasNew)
+			socket.emit('adduser', name.value, "room1");
 	});
 
 	var changeUsername = function (newname) {
 		socket.emit('changeUsername', newname);
-		appendToChat({ message: "You changed your name to " + newname + "."});
+		
 	}
 
 
@@ -31,13 +36,14 @@ window.onload = function () {
 	});
 
 	appendToChat = function (data) {
+		console.log(data);
 		if (data.message) {
 			messages.push(data);
 			var html = '';
 			for (var i = 0; i < messages.length; i++) {
 				if (messages[i].username) {
 					// Normal user message
-					html += createChatBubble(messages[i].username, messages[i].message);
+					html += createChatBubble(messages[i].username, messages[i].message, messages[i].own);
 				} else {
 					// Server message
 
@@ -58,7 +64,7 @@ window.onload = function () {
 	switchRoom = function(room) {
 		console.log("Switching room to " + room);
 		socket.emit('switchRoom', room);
-	} 
+	}
 
 	socket.on('updaterooms', function(rooms, currentRoom) {
 		$('#rooms').empty();
@@ -72,9 +78,21 @@ window.onload = function () {
 
 	});
 
-	var createChatBubble = function (username, message) {
-		var bubbleClassByUser = (username == 'You') ? 'ownChatBubble' : 'chatBubble';
-		var rowClassByUser = (username == 'You') ? 'ownChatRow' : 'chatRow';
+	socket.on('updateUsersInRoom', function(usernames) {
+		$('#users').empty();
+		for (var i = 0; i < usernames.length; i++) {
+			var username = usernames[i];
+			if (username == name.value) {
+				$('#users').apppend('<div><b>' + username + '</b></div>');
+			} else {
+				$('#users').append('<div>' + username + '</div>');
+			}
+		}
+	})
+
+	var createChatBubble = function (username, message, own) {
+		var bubbleClassByUser = (own) ? 'ownChatBubble' : 'chatBubble';
+		var rowClassByUser = (own) ? 'ownChatRow' : 'chatRow';
 		var html = '<div class="generalRow ' + rowClassByUser + '">';
 		html += '<div class="bubble ' + bubbleClassByUser + '"><span class="username"><b>';
 		html += username + ': </b></span>';
@@ -84,6 +102,9 @@ window.onload = function () {
 	}
 
 
+	testButton.onclick = function() {
+		socket.emit('callTestfunction');
+	}
 
 
 	sendButton.onclick = sendMessage = function () {
@@ -92,7 +113,8 @@ window.onload = function () {
 		var text = field.value;
 		var data = {
 			message: text,
-			username: "You"
+			username: "You",
+			own: true
 		}
 		socket.emit('send', text);
 
