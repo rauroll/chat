@@ -83,7 +83,7 @@ window.onload = function () {
 		for (var i = 0; i < usernames.length; i++) {
 			var username = usernames[i];
 			if (username == name.value) {
-				$('#users').apppend('<div><b>' + username + '</b></div>');
+				$('#users').append('<div><b>' + username + '</b></div>');
 			} else {
 				$('#users').append('<div>' + username + '</div>');
 			}

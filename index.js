@@ -258,6 +258,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('callTestfunction', function() {
 
 		// Allows initiating tests from the browser.
+		
 		console.log(rooms[socket.room]);
 	})
 
