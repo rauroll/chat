@@ -6,7 +6,7 @@ var User = require('./user');
 
 var io = require('socket.io').listen(app.listen(port));
 
-
+var escape = require('escape-html');
 
 
 //var rooms = ["room1", "room2", "room3"];

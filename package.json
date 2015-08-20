@@ -8,7 +8,8 @@
     "socket.io": "latest",
     "express-session": "latest",
     "express-socket.io-session": "latest",
-    "jade": "latest"
+    "jade": "latest",
+    "escape-html": "latest"
   },
   "main": "index.js",
   "scripts": {
