@@ -93,8 +93,8 @@ io.sockets.on('connection', function(socket) {
 		console.log("joining!");
 
 		var sessId = socket.handshake.session.id;
-		console.log(sessId);
-		var nameToUse = (socket.handshake.session.username) ? socket.handshake.session.username : username;
+		
+		var nameToUse = socket.handshake.session.username || username;
 		var userWasNew = true;
 		if (room in rooms) {
 			var users = rooms[room];
@@ -121,6 +121,8 @@ io.sockets.on('connection', function(socket) {
 						for (var v in users) {
 							usernameList.push(users[v].username);
 						}
+
+						// Might need to figure out an efficient algorithm
 						do {
 							nameToUse = "Anonymous" + parseInt(100000 * Math.random());
 							console.log("Checking... " + nameToUse);

@@ -15,6 +15,7 @@ window.onload = function () {
 		socket.emit('join', name.value, "room1");
 		//socket.emit('adduser', name.value, "room1");
 	});
+	
 	socket.on('updateUsername', function(username) {
 		name.value = username;
 	});
