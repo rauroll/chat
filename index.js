@@ -70,7 +70,7 @@ io.sockets.on('connection', function(socket) {
 		var msg = "You have connected to " + room;
 		socket.emit('message', { message: msg });
 		socket.broadcast.to(room).emit('message', {message: username + " has connected to the chat."});
-		socket.emit('updaterooms', Object.keys(rooms), room);
+		//socket.emit('updaterooms', Object.keys(rooms), room);
 
 		updateUsers();
 
@@ -105,7 +105,7 @@ io.sockets.on('connection', function(socket) {
 				socket.username = users[sessId].username;
 				socket.join(room);
 				userWasNew = false;
-				socket.emit('updaterooms', Object.keys(rooms), room);
+				//socket.emit('updaterooms', Object.keys(rooms), room);
 			} else {
 
 				for (var key in users) {
@@ -229,7 +229,7 @@ io.sockets.on('connection', function(socket) {
 		socket.broadcast.to(socket.room).emit('message', { message: socket.username + " has left this room." });
 		socket.room = newroom;
 		socket.broadcast.to(newroom).emit('message', { message: socket.username + " has joined this room." });
-		socket.emit('updaterooms', Object.keys(rooms), newroom);
+		//socket.emit('updaterooms', Object.keys(rooms), newroom);
 	});
 
 	socket.on('disconnect', function() {

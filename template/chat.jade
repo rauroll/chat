@@ -1,22 +1,26 @@
 extends layout.jade
 
 block content
-	nav#roomwnav
-		b Rooms
-		#rooms
-	br
-	div#user-wrapper
-		b Users
-		#users
+	//-
+		nav#roomwnav
+			b Rooms
+			#rooms
+		br
+	
+	
 	input#testbutton(type='button', value='Call test function')
 	br
 	#namewrapper
 		b Your name: 
 			input#name(type='text', value='Anonymous')
-	#chatwrapper
-		#content
-		.controls
+	div#mainwrapper
+		#chatwrapper
+			#content
+			.controls
 
-			br
-			input#field()
-			input#send(type='button', value='send')
+				br
+				input#field()
+				input#send(type='button', value='send')
+		div#userwrapper
+			b Users
+			#users

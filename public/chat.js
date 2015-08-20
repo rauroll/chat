@@ -66,17 +66,17 @@ window.onload = function () {
 		socket.emit('switchRoom', room);
 	}
 
-	socket.on('updaterooms', function(rooms, currentRoom) {
-		$('#rooms').empty();
-		$.each(rooms, function(key, value) {
-			if (value== currentRoom) {
-				$('#rooms').append('<div>' + value + '</div>');
-			} else {
-				$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
-			}
-		});
+	// socket.on('updaterooms', function(rooms, currentRoom) {
+	// 	$('#rooms').empty();
+	// 	$.each(rooms, function(key, value) {
+	// 		if (value== currentRoom) {
+	// 			$('#rooms').append('<div>' + value + '</div>');
+	// 		} else {
+	// 			$('#rooms').append('<div><a href="#" onclick="switchRoom(\''+value+'\')">' + value + '</a></div>');
+	// 		}
+	// 	});
 
-	});
+	// });
 
 	socket.on('updateUsersInRoom', function(usernames) {
 		$('#users').empty();
