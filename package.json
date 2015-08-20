@@ -10,5 +10,8 @@
     "express-socket.io-session": "latest",
     "jade": "latest"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "scripts": {
+  	"start": "node index.js"
+  }
 }
